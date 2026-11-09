@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c151c">
+  <meta name="description" content="Учебная экспертная система Nspire Dev для подбора типа веб-проекта на основе правил CLIPS.">
+  <title>Nspire Dev — Expert System</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  <script defer src="{{ url_for('static', filename='script.js') }}"></script>
+</head>
+<body>
+  <div class="noise" aria-hidden="true"></div>
+  <header class="header wrap">
+    <a class="brand" href="/" aria-label="На главную">
+      <span class="brand-mark" aria-hidden="true"><span></span><span></span><span></span></span>
+      <span>nspire<span class="brand-dot">.</span>dev</span>
+    </a>
+    <nav class="nav" aria-label="Навигация">
+      <a href="#how">Как это работает</a>
+      <a href="#expert">Экспертная система</a>
+    </nav>
+    <span class="header-pill"><i></i> UNIVERSITY CASE / 03</span>
+  </header>
+
+  <main>
+    <section class="hero wrap">
+      <div class="eyebrow"><span class="eyebrow-dash"></span> SMART PROJECT CONSULTANT <span class="eyebrow-no">/ 2026</span></div>
+      <h1>Правильный сайт<br>начинается с <em>правильного</em><br>решения<span class="period">.</span></h1>
+      <div class="hero-bottom">
+        <p>Ответьте на три коротких вопроса — экспертная система определит подходящий формат вашего веб-проекта и объяснит свой выбор.</p>
+        <a class="hero-link" href="#expert">Подобрать решение <span aria-hidden="true">↗</span></a>
+      </div>
+      <div class="hero-watermark" aria-hidden="true">N/</div>
+    </section>
+
+    <section class="workspace wrap" id="expert" aria-labelledby="workspace-heading">
+      <div class="workspace-heading">
+        <div><div class="section-kicker">01 / ЭКСПЕРТНАЯ СИСТЕМА</div><h2 id="workspace-heading">Расскажите о проекте<span class="period">.</span></h2></div>
+        <span class="counter">03 ВОПРОСА / ~ 1 МИНУТА</span>
+      </div>
+      <div class="workspace-grid">
+        <form id="expert-form" class="question-card">
+          <div class="card-top"><span>КОНФИГУРАТОР ПРОЕКТА</span><span class="live-indicator"><i></i> SYSTEM ONLINE</span></div>
+          <div class="progress" aria-hidden="true"><span id="progress-bar"></span></div>
+          <fieldset class="question-group">
+            <legend><span class="question-number">01</span> Какова главная цель вашего сайта?</legend>
+            <div class="option-grid option-grid-three">
+              <label class="option"><input type="radio" name="goal" value="products" checked><span class="option-icon" aria-hidden="true">◈</span><span class="option-label">Продажа товаров</span><span class="option-caption">Каталог и заказы</span></label>
+              <label class="option"><input type="radio" name="goal" value="company"><span class="option-icon" aria-hidden="true">▦</span><span class="option-label">О компании</span><span class="option-caption">Услуги и репутация</span></label>
+              <label class="option"><input type="radio" name="goal" value="campaign"><span class="option-icon" aria-hidden="true">✳</span><span class="option-label">Одна услуга</span><span class="option-caption">Реклама и заявки</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="question-group">
+            <legend><span class="question-number">02</span> Нужна ли оплата на сайте?</legend>
+            <div class="option-grid option-grid-two">
+              <label class="option small"><input type="radio" name="payment" value="yes"><span class="option-label">Да, нужна</span><span class="option-caption">Оплата картой онлайн</span></label>
+              <label class="option small"><input type="radio" name="payment" value="no" checked><span class="option-label">Нет, не нужна</span><span class="option-caption">Связь без оплаты</span></label>
+            </div>
+          </fieldset>
+          <fieldset class="question-group">
+            <legend><span class="question-number">03</span> Нужны ли личные кабинеты?</legend>
+            <div class="option-grid option-grid-two">
+              <label class="option small"><input type="radio" name="accounts" value="yes"><span class="option-label">Да</span><span class="option-caption">Авторизация пользователей</span></label>
+              <label class="option small"><input type="radio" name="accounts" value="no" checked><span class="option-label">Нет</span><span class="option-caption">Открытый доступ</span></label>
+            </div>
+          </fieldset>
+          <div class="actions"><button class="submit-btn" id="submit-btn" type="submit">Получить рекомендацию <span aria-hidden="true">↗</span></button><button class="reset-btn" type="reset">Сбросить</button></div>
+          <p class="error-message" id="error" role="alert" hidden></p>
+        </form>
+        <aside class="result-card" aria-live="polite" aria-atomic="true">
+          <div class="result-top"><span>РЕЗУЛЬТАТ АНАЛИЗА</span><span class="result-id">EXPERT / v1.0</span></div>
+          <div class="idle-view" id="idle-view"><div class="orb" aria-hidden="true"><span>✳</span></div><div class="idle-meta">READY TO ANALYZE</div><h3>Решение начинается<br>с ваших ответов.</h3><p>Выберите параметры проекта слева и запустите экспертный анализ.</p><div class="dashed-line"></div><span class="idle-bottom">ENGINE: CLIPS / RULE-BASED REASONING</span></div>
+          <div class="result-view" id="result-view" hidden><div class="result-success"><span class="success-icon">✓</span> РЕКОМЕНДАЦИЯ НАЙДЕНА</div><p class="result-lead">Для вашего проекта подходит</p><h3 id="result-title"></h3><p class="result-subtitle" id="result-subtitle"></p><p class="result-description" id="result-description"></p><div class="feature-title">КЛЮЧЕВЫЕ ВОЗМОЖНОСТИ</div><ul id="result-features" class="feature-list"></ul><div class="explanation"><span>ПОЧЕМУ ЭТОТ ВАРИАНТ?</span><p id="result-reason"></p><code id="result-rule"></code></div><div class="result-footer"><span id="result-rule-id"></span><button type="button" id="restart-btn">Новый подбор ↗</button></div><p class="disclaimer" id="disclaimer"></p></div>
+        </aside>
+      </div>
+    </section>
+
+    <section class="how wrap" id="how"><div class="section-kicker">02 / КАК ЭТО РАБОТАЕТ</div><h2>Просто на входе.<br><em>Логично</em> на выходе<span class="period">.</span></h2><div class="steps"><article><span>01 / INPUT</span><div class="step-icon">↗</div><h3>Вы отвечаете</h3><p>Три вопроса формируют факты о потребностях будущего проекта.</p></article><article><span>02 / LOGIC</span><div class="step-icon">⌘</div><h3>CLIPS анализирует</h3><p>Механизм вывода сопоставляет факты с экспертными правилами «если — то».</p></article><article><span>03 / RESULT</span><div class="step-icon">✓</div><h3>Система объясняет</h3><p>Вы получаете рекомендацию, обоснование и сработавшее правило.</p></article></div></section>
+  </main>
+  <footer class="footer wrap"><span>nspire<span class="brand-dot">.</span>dev <small>EXPERT SYSTEM</small></span><span>Учебный прототип · Кейс-задача № 3</span><span>© 2026</span></footer>
+</body>
+</html>
